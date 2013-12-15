@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<addon addon_id="fa_bbcode" title="Font Awesome BbCode" version_string="1.0" version_id="0" url="" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="">
+  <admin_navigation/>
+  <admin_permissions/>
+  <admin_style_properties/>
+  <admin_templates/>
+  <admin_template_modifications/>
+  <code_events/>
+  <code_event_listeners/>
+  <cron/>
+  <email_templates/>
+  <email_template_modifications/>
+  <optiongroups>
+    <group group_id="fa_bbcode" display_order="9999" debug_only="0"/>
+    <option option_id="fa_bbcode_cdn_integration" edit_format="radio" data_type="boolean" can_backup="1">
+      <default_value>1</default_value>
+      <edit_format_params>0={xen:phrase no}
+1={xen:phrase yes}</edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="fa_bbcode" display_order="10"/>
+    </option>
+  </optiongroups>
+  <permissions>
+    <permission_groups/>
+    <permissions/>
+    <interface_groups/>
+  </permissions>
+  <phrases>
+    <phrase title="option_fa_bbcode_cdn_integration" version_id="0" version_string="1.0"><![CDATA[CDN Integration]]></phrase>
+    <phrase title="option_fa_bbcode_cdn_integration_explain" version_id="0" version_string="1.0"><![CDATA[If you have already integrated the Font Awesome CDN in your header, no need to activate it here.]]></phrase>
+    <phrase title="option_group_fa_bbcode" version_id="0" version_string="1.0"><![CDATA[Font Awesome BbCode]]></phrase>
+    <phrase title="option_group_fa_bbcode_description" version_id="0" version_string="1.0"><![CDATA[Font Awesome BbCode Options]]></phrase>
+  </phrases>
+  <route_prefixes/>
+  <style_properties/>
+  <templates>
+    <template title="bbm_fontawesome" version_id="0" version_string="1.0"><![CDATA[<xen:require css="bbm_fontawesome.css" />
+
+<xen:if is="{$options.uniqFont}">
+	<xen:if is="{$options.textPosition} == 'left'">
+		<span>{xen:raw $content}<i class="fa {$options.uniqFont}"></i></span>
+	<xen:else />
+		<span><i class="fa {$options.uniqFont}"></i>{xen:raw $content}</span>
+	</xen:if>
+<xen:else />
+	<xen:if is="{$options.textPosition} == 'left'">
+		<span>{xen:raw $content}<span class="{$options.stack.wrapper}">
+			<i class="fa {$options.stack.font1}"></i>
+			<i class="fa {$options.stack.font2}"></i>
+		</span></span>
+	<xen:else />
+		<span><span class="{$options.stack.wrapper}">
+			<i class="fa {$options.stack.font1}"></i>
+			<i class="fa {$options.stack.font2}"></i>
+		</span>{xen:raw $content}</span>
+	</xen:if>
+</xen:if>]]></template>
+    <template title="bbm_fontawesome.css" version_id="0" version_string="1.0"><![CDATA[]]></template>
+  </templates>
+  <public_template_modifications>
+    <modification template="page_container_js_head" modification_key="sedo_fa_cdn_integration" description="Font awesome BbCode CDN integration" execution_order="10" enabled="1" action="preg_replace">
+      <find><![CDATA[#^.*$#su]]></find>
+      <replace><![CDATA[$0
+<xen:if is="{$xenOptions.fa_bbcode_cdn_integration}">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+</xen:if>]]></replace>
+    </modification>
+  </public_template_modifications>
+  <bb_code_media_sites/>
+</addon>
