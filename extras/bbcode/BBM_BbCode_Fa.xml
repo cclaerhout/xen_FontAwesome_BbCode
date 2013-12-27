@@ -3,13 +3,14 @@
   <BbCode>
     <General>
       <tag>fa</tag>
-      <title><![CDATA[[BBM] Font Awesome BbCode]]></title>
+      <title><![CDATA[[BBM] Font Awesome]]></title>
       <description><![CDATA[Integrate some vectorial icons with Font Awesome]]></description>
       <example><![CDATA[[fa=fa-camera-retro] text[/fa]
 [fa=fa-camera-retro|left]text [/fa]
 [fa=fa-camera-retro|left|fa-5x][SIZE=7][B]Text[/B] [/SIZE][/fa]
 [SIZE=7][B]Text[/B] [/SIZE][fa=fa-camera-retro|fa-5x][/fa]
-[fa=fa-lg|fa-square-o|fa-stack-2x|fa-stack|fa-twitter|fa-stack-1x] Piou piou[/fa]]]></example>
+[fa=fa-lg|fa-square-o|fa-stack-2x|fa-stack|fa-twitter|fa-stack-1x] Piou piou[/fa]
+[fa=fa-2x|#08450e|fa-square|fa-stack-2x|fa-stack|#3abd2c|fa-user|fa-stack-1x|fa-lg][/fa]]]></example>
       <active>1</active>
       <display_help>0</display_help>
     </General>
@@ -57,17 +58,17 @@
       <view_return_delay>0</view_return_delay>
     </ViewPerms>
     <Button>
-      <hasButton>0</hasButton>
+      <hasButton>1</hasButton>
       <button_has_usr>0</button_has_usr>
       <button_usr>a:0:{}</button_usr>
       <killCmd>0</killCmd>
       <custCmd></custCmd>
-      <quattro_button_type>manual</quattro_button_type>
-      <quattro_button_type_opt><![CDATA[]]></quattro_button_type_opt>
-      <quattro_button_return>direct</quattro_button_return>
-      <quattro_button_return_opt><![CDATA[]]></quattro_button_return_opt>
+      <quattro_button_type>icons_xen</quattro_button_type>
+      <quattro_button_type_opt><![CDATA[e01c]]></quattro_button_type_opt>
+      <quattro_button_return>template</quattro_button_return>
+      <quattro_button_return_opt><![CDATA[fa]]></quattro_button_return_opt>
       <imgMethod></imgMethod>
-      <buttonDesc><![CDATA[]]></buttonDesc>
+      <buttonDesc><![CDATA[{phrase:sedo_fabbcode_fontawesome_creator}]]></buttonDesc>
       <tagOptions><![CDATA[]]></tagOptions>
       <tagContent><![CDATA[]]></tagContent>
       <redactor_has_icon>0</redactor_has_icon>

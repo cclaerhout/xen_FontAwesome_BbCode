@@ -6,16 +6,19 @@
   <admin_templates/>
   <admin_template_modifications/>
   <code_events/>
-  <code_event_listeners/>
+  <code_event_listeners>
+    <listener event_id="load_class_controller" execute_order="15" callback_class="Sedo_FaBbCode_Listeners" callback_method="controllerPublic" active="1" hint="XenForo_ControllerPublic_Editor" description="Extend Editor Controller to add Awesome Fonts array to MCE4 dialog"/>
+  </code_event_listeners>
   <cron/>
   <email_templates/>
   <email_template_modifications/>
   <optiongroups>
-    <group group_id="fa_bbcode" display_order="9999" debug_only="0"/>
-    <option option_id="fa_bbcode_cdn_integration" edit_format="radio" data_type="boolean" can_backup="1">
+    <group group_id="fa_bbcode" display_order="13215" debug_only="0"/>
+    <option option_id="fa_bbcode_integration" edit_format="radio" data_type="integer" can_backup="1">
       <default_value>1</default_value>
-      <edit_format_params>0={xen:phrase no}
-1={xen:phrase yes}</edit_format_params>
+      <edit_format_params>0={xen:phrase sedo_fa_no_integration}
+1={xen:phrase sedo_fa_cdn_integration}
+2={xen:phrase sedo_fa_local_integration}</edit_format_params>
       <sub_options></sub_options>
       <relation group_id="fa_bbcode" display_order="10"/>
     </option>
@@ -26,10 +29,47 @@
     <interface_groups/>
   </permissions>
   <phrases>
-    <phrase title="option_fa_bbcode_cdn_integration" version_id="0" version_string="1.0"><![CDATA[CDN Integration]]></phrase>
-    <phrase title="option_fa_bbcode_cdn_integration_explain" version_id="0" version_string="1.0"><![CDATA[If you have already integrated the Font Awesome CDN in your header, no need to activate it here.]]></phrase>
-    <phrase title="option_group_fa_bbcode" version_id="0" version_string="1.0"><![CDATA[Font Awesome BbCode]]></phrase>
+    <phrase title="option_fa_bbcode_integration" version_id="0" version_string="1.0"><![CDATA[Font-Awesome Integration]]></phrase>
+    <phrase title="option_fa_bbcode_integration_explain" version_id="0" version_string="1.0"><![CDATA[If you have already integrated the Font-Awesome CDN in your header, no need to integrate it again. If you choose the local integration, the Font-Awesome path will be then: "styles/sedo/font-awesome/css/font-awesome.min.css".<br/><br/>
+Default value: "Font-Awesome CDN integration".]]></phrase>
+    <phrase title="option_group_fa_bbcode" version_id="0" version_string="1.0"><![CDATA[[BBM] Font Awesome BbCode]]></phrase>
     <phrase title="option_group_fa_bbcode_description" version_id="0" version_string="1.0"><![CDATA[Font Awesome BbCode Options]]></phrase>
+    <phrase title="sedo_fabbcode_fontawesome_creator" global_cache="1" version_id="0" version_string="1.0"><![CDATA[Font-Awesome Creator]]></phrase>
+    <phrase title="sedo_fa_all" version_id="0" version_string="1.0"><![CDATA[All]]></phrase>
+    <phrase title="sedo_fa_and_x_more" version_id="0" version_string="1.0"><![CDATA[and {0} more...]]></phrase>
+    <phrase title="sedo_fa_border" version_id="0" version_string="1.0"><![CDATA[Border]]></phrase>
+    <phrase title="sedo_fa_border_and_pulled_icons" version_id="0" version_string="1.0"><![CDATA[Bordered & Pulled Icons]]></phrase>
+    <phrase title="sedo_fa_cdn_integration" version_id="0" version_string="1.0"><![CDATA[Font-Awesome CDN integration]]></phrase>
+    <phrase title="sedo_fa_fixed_width" version_id="0" version_string="1.0"><![CDATA[Fixed width]]></phrase>
+    <phrase title="sedo_fa_flip_honrizontal" version_id="0" version_string="1.0"><![CDATA[Flip honrizontal]]></phrase>
+    <phrase title="sedo_fa_flip_vertical" version_id="0" version_string="1.0"><![CDATA[Flip vertical]]></phrase>
+    <phrase title="sedo_fa_icon_size" version_id="0" version_string="1.0"><![CDATA[Icon size]]></phrase>
+    <phrase title="sedo_fa_icon_zoom_2x" version_id="0" version_string="1.0"><![CDATA[Size x2]]></phrase>
+    <phrase title="sedo_fa_icon_zoom_3x" version_id="0" version_string="1.0"><![CDATA[Size x3]]></phrase>
+    <phrase title="sedo_fa_icon_zoom_4x" version_id="0" version_string="1.0"><![CDATA[Size x4]]></phrase>
+    <phrase title="sedo_fa_icon_zoom_5x" version_id="0" version_string="1.0"><![CDATA[Size x5]]></phrase>
+    <phrase title="sedo_fa_icon_zoom_lg" version_id="0" version_string="1.0"><![CDATA[Size +33%]]></phrase>
+    <phrase title="sedo_fa_inverse_icon" version_id="0" version_string="1.0"><![CDATA[Inverse icon]]></phrase>
+    <phrase title="sedo_fa_larger_icon" version_id="0" version_string="1.0"><![CDATA[Larger size]]></phrase>
+    <phrase title="sedo_fa_local_integration" version_id="0" version_string="1.0"><![CDATA[Local integration]]></phrase>
+    <phrase title="sedo_fa_misc" version_id="0" version_string="1.0"><![CDATA[Misc.]]></phrase>
+    <phrase title="sedo_fa_missing_alert" version_id="0" version_string="1.0"><![CDATA[Sorry, but you need to provide more data ]]></phrase>
+    <phrase title="sedo_fa_normal_icon" version_id="0" version_string="1.0"><![CDATA[Normal size]]></phrase>
+    <phrase title="sedo_fa_no_integration" version_id="0" version_string="1.0"><![CDATA[No integration]]></phrase>
+    <phrase title="sedo_fa_no_result_found" version_id="0" version_string="1.0"><![CDATA[No result found...]]></phrase>
+    <phrase title="sedo_fa_please_select" version_id="0" version_string="1.0"><![CDATA[Please select...]]></phrase>
+    <phrase title="sedo_fa_pull_left" version_id="0" version_string="1.0"><![CDATA[Pull left]]></phrase>
+    <phrase title="sedo_fa_pull_right" version_id="0" version_string="1.0"><![CDATA[Pull right]]></phrase>
+    <phrase title="sedo_fa_reset_color" version_id="0" version_string="1.0"><![CDATA[Reset color]]></phrase>
+    <phrase title="sedo_fa_rotated_and_flipped" version_id="0" version_string="1.0"><![CDATA[Rotated and flipped]]></phrase>
+    <phrase title="sedo_fa_rotate_180" version_id="0" version_string="1.0"><![CDATA[Rotate 180°]]></phrase>
+    <phrase title="sedo_fa_rotate_270" version_id="0" version_string="1.0"><![CDATA[Rotate 270°]]></phrase>
+    <phrase title="sedo_fa_rotate_90" version_id="0" version_string="1.0"><![CDATA[Rotate 90°]]></phrase>
+    <phrase title="sedo_fa_select_icons" version_id="0" version_string="1.0"><![CDATA[Select icon(s)]]></phrase>
+    <phrase title="sedo_fa_spinning_effect" version_id="0" version_string="1.0"><![CDATA[Spinning effect]]></phrase>
+    <phrase title="sedo_fa_stacked_icons" version_id="0" version_string="1.0"><![CDATA[Stacked icons]]></phrase>
+    <phrase title="sedo_fa_text_input" version_id="0" version_string="1.0"><![CDATA[...]]></phrase>
+    <phrase title="sedo_fa_type_something" version_id="0" version_string="1.0"><![CDATA[Type something...]]></phrase>
   </phrases>
   <route_prefixes/>
   <style_properties/>
@@ -38,31 +78,241 @@
 
 <xen:if is="{$options.uniqFont}">
 	<xen:if is="{$options.textPosition} == 'left'">
-		<span>{xen:raw $content}<i class="fa {$options.uniqFont}"></i></span>
+		<span class="bbm_fa bbm_fa_solo">{xen:raw $content}<i class="fa {$options.uniqFont}" {xen:raw $options.extraCssFirst}></i></span>
 	<xen:else />
-		<span><i class="fa {$options.uniqFont}"></i>{xen:raw $content}</span>
+		<span class="bbm_fa bbm_fa_solo"><i class="fa {$options.uniqFont}" {xen:raw $options.extraCssFirst}></i>{xen:raw $content}</span>
 	</xen:if>
 <xen:else />
 	<xen:if is="{$options.textPosition} == 'left'">
-		<span>{xen:raw $content}<span class="{$options.stack.wrapper}">
-			<i class="fa {$options.stack.font1}"></i>
-			<i class="fa {$options.stack.font2}"></i>
+		<span class="bbm_fa bbm_fa_stack">{xen:raw $content}<span class="{$options.stack.wrapper}">
+			<i class="fa {$options.stack.font1}" {xen:raw $options.extraCssFirst}></i>
+			<i class="fa {$options.stack.font2}" {xen:raw $options.extraCssSecond}></i>
 		</span></span>
 	<xen:else />
-		<span><span class="{$options.stack.wrapper}">
-			<i class="fa {$options.stack.font1}"></i>
-			<i class="fa {$options.stack.font2}"></i>
+		<span class="bbm_fa bbm_fa_stack"><span class="{$options.stack.wrapper}">
+			<i class="fa {$options.stack.font1}" {xen:raw $options.extraCssFirst}></i>
+			<i class="fa {$options.stack.font2}" {xen:raw $options.extraCssSecond}></i>
 		</span>{xen:raw $content}</span>
 	</xen:if>
 </xen:if>]]></template>
     <template title="bbm_fontawesome.css" version_id="0" version_string="1.0"><![CDATA[]]></template>
+    <template title="quattro_dialog_bbm_fa" version_id="0" version_string="1.0"><![CDATA[<xen:require js="js/sedo/fabbcode/jautochecklist/jAutochecklist.min.js" />
+<xen:require js="js/sedo/fabbcode/colpick/colpick.js" />
+<xen:require js="js/sedo/fabbcode/tinyquattro/fa.min.js" />
+
+<xen:require css="quattro_dialog.css" />
+<xen:require css="quattro_dialog_bbm_fa.css" />
+<link rel="stylesheet" href="js/sedo/fabbcode/jautochecklist/css/jAutochecklist.min.css" />
+<link rel="stylesheet" href="js/sedo/fabbcode/colpick/colpick.css" />
+
+<xen:set var="$optionsEl.1">1</xen:set>
+<xen:set var="$optionsEl.2">2</xen:set>
+
+<script type="text/javascript">
+	if(typeof xenMCE.Phrases === 'undefined') xenMCE.Phrases = {};
+	xenMCE.Phrases.Fa = {
+		textAllSelected: "{xen:jsescape {xen:phrase sedo_fa_all}}",
+		textEmpty: "{xen:jsescape {xen:phrase sedo_fa_please_select}}",
+		textMoreItem: "{xen:jsescape {xen:phrase sedo_fa_and_x_more}}",
+		textNoResult: "{xen:jsescape {xen:phrase sedo_fa_no_result_found}}",
+		textSearch: "{xen:jsescape {xen:phrase sedo_fa_type_something}}",
+		textInput: "{xen:jsescape {xen:phrase sedo_fa_text_input}}",
+		resetColor: "{xen:jsescape {xen:phrase sedo_fa_reset_color}}",
+		missingAlert: "{xen:jsescape {xen:phrase sedo_fa_missing_alert}}"
+	};
+</script>
+
+<div class="mceTitle" data-width="500" data-height="300">{xen:phrase sedo_fabbcode_fontawesome_creator}</div>
+
+<div id="bbm_fa">
+	<dl class="xenmce_inline">
+		<dt>{xen:phrase sedo_fa_select_icons}</dt>
+		<dd><ul id="fa_list" data-name="faList">
+		<xen:foreach loop="$fonts" value="$fontClass">
+			<li data-value="{$fontClass}"><span class="fa {$fontClass} fa-lg logo"></span> {$fontClass}</li>
+		</xen:foreach>
+		</ul></dd>
+		
+		<dt></dt>
+		<dd>
+			<span id="preview_fa_align" class="fa-stack">
+				<i class="fa fa-stack-2x fa-square-o"></i>
+				<i class="fa fa-align-right fa-stack-1x"></i>
+			</span>
+		</dd>
+	</dl>
+
+	<xen:foreach loop="$optionsEl" value="$optionEl">
+	<dl id="options_wrapper_{$optionEl}" class="xenmce_inline options">
+		<dt>Icon {$optionEl} options</dt>
+		<dd><ul id="fa_options_{$optionEl}" class="fa_options" data-name="faOptions_{$optionEl}">
+
+			<li class="group">{xen:phrase sedo_fa_icon_size}</li>
+				<li class="child" data-value="fa-lg">{xen:phrase sedo_fa_icon_zoom_lg}</li>
+				<xen:if is="{$optionEl} == 1">
+					<li class="child" data-value="fa-2x">{xen:phrase sedo_fa_icon_zoom_2x}</li>
+					<li class="child" data-value="fa-3x">{xen:phrase sedo_fa_icon_zoom_3x}</li>
+					<li class="child" data-value="fa-4x">{xen:phrase sedo_fa_icon_zoom_4x}</li>
+					<li class="child" data-value="fa-5x">{xen:phrase sedo_fa_icon_zoom_5x}</li>
+				</xen:if>
+			<li class="group">{xen:phrase sedo_fa_border_and_pulled_icons}</li>
+				<li class="child" data-value="fa-border">{xen:phrase sedo_fa_border}</li>
+				<li class="child" data-value="pull-left">{xen:phrase sedo_fa_pull_left}</li>
+				<li class="child" data-value="pull-right">{xen:phrase sedo_fa_pull_right}</li>
+			<li class="group">{xen:phrase sedo_fa_rotated_and_flipped}</li>
+				<li class="child" data-value="fa-rotate-90">{xen:phrase sedo_fa_rotate_90}</li>
+				<li class="child" data-value="fa-rotate-180">{xen:phrase sedo_fa_rotate_180}</li>
+				<li class="child" data-value="fa-rotate-270">{xen:phrase sedo_fa_rotate_270}</li>
+				<li class="child" data-value="fa-flip-horizontal">{xen:phrase sedo_fa_flip_honrizontal}</li>
+				<li class="child" data-value="fa-flip-vertical">{xen:phrase sedo_fa_flip_vertical}</li>
+			<li class="group">{xen:phrase sedo_fa_stacked_icons}</li>
+				<li class="child" data-name="stack" data-locked="1" data-value="fa-stack-1x">{xen:phrase sedo_fa_normal_icon}</li>
+				<li class="child" data-name="stack" data-locked="1" data-value="fa-stack-2x">{xen:phrase sedo_fa_larger_icon}</li>
+				<li class="child" data-name="stack" data-locked="1" data-value="fa-inverse">{xen:phrase sedo_fa_inverse_icon}</li>
+			<li class="group">{xen:phrase sedo_fa_misc}</li>
+				<li class="child" data-value="fa-fw">{xen:phrase sedo_fa_fixed_width}</li>
+				<li class="child" data-value="fa-spin">{xen:phrase sedo_fa_spinning_effect}</li>
+		</ul></dd>
+		
+		<dt></dt>
+		<dd>
+			<span id="bbm_fa_colpick_{$optionEl}" class="bbm_fa_colpick"><i class="fa fa-pencil-square-o fa-2x"></i></span>
+		</dd>	
+	</dl>
+	</xen:foreach>
+	
+	<ul id="preview_fa" class="messageText ugc baseHtml">
+		<li id="preview_fa_solo" class="preview_fa_wrapper">
+			<i></i>
+		</li>
+		<li id="preview_fa_stack" class="preview_fa_wrapper">
+			<span>
+				<i></i>
+				<i></i>
+			</span>
+		</li>
+		<li id="preview_fa_txt" class="right"><input 
+			id="fa_txt_input"
+			name="bbmFaText"
+			type="text"
+			value="{xen:phrase sedo_fa_text_input}"
+		/></li>
+	</ul>
+	
+	<input name="bbmFaBtn1" type="hidden" value="" />
+	<input name="bbmFaBtn2" type="hidden" value="" />
+	<input name="bbmFaOpt1" type="hidden" value="" />
+	<input name="bbmFaOpt2" type="hidden" value="" />
+	<input name="bbmFaOptRoot" type="hidden" value="" />
+	<input name="bbmFaStack" type="hidden" value="0" />
+	<input name="bbmFaPos" type="hidden" value="right" />
+	<input name="bbmFaColor1" type="hidden" value="" />
+	<input name="bbmFaColor2" type="hidden" value="" />	
+</div>]]></template>
+    <template title="quattro_dialog_bbm_fa.css" version_id="0" version_string="1.0"><![CDATA[#bbm_fa #jAutochecklist_wrapper_fa_list{
+	margin-top:3px;
+	margin-left:1px;
+	text-align:center;
+	max-width:300px;
+	width:250px;
+}
+
+#bbm_fa #jAutochecklist_wrapper_fa_list.jAutochecklist_active .jAutochecklist_popup{
+	bottom: -150px;
+}
+
+#bbm_fa #jAutochecklist_wrapper_fa_list .jAutochecklist_popup{
+	bottom: -50px;
+}
+
+#bbm_fa #jAutochecklist_wrapper_fa_list .jAutochecklist_popup:before{
+	border-color: #999999 rgba(0, 0, 0, 0);
+	border-width: 0 10px 10px;
+	bottom: auto;
+	top: -10px;
+}
+#bbm_fa #jAutochecklist_wrapper_fa_list .jAutochecklist_popup:after{
+	border-color: rgba(255, 255, 255, 0.9) rgba(0, 0, 0, 0);
+	border-width: 0 8px 9px;
+	bottom: auto;	
+	top: -9px;
+}
+
+#bbm_fa #jAutochecklist_wrapper_fa_list .jAutochecklist_graph_results{
+	margin-top: 3px;
+}
+
+#bbm_fa .jAutochecklist_wrapper.fa_options{
+	margin-top:3px;
+	margin-left:1px;
+	text-align:center;
+	max-width:300px;
+	width:250px;
+}
+#bbm_fa #preview_fa_stack{
+	display:none;
+}
+
+#bbm_fa #preview_fa{
+	max-width: 80%;
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+	background: {xen:property primaryLighter};
+	border: 1px solid {xen:property primaryLightish};
+	border-radius:5px;
+	padding:15px;
+	height: 115px;
+	overflow: auto;
+}
+
+#bbm_fa #preview_fa_txt,
+#bbm_fa #preview_fa_solo,
+#bbm_fa #preview_fa_stack{
+	width: 50%;
+}
+
+#bbm_fa #preview_fa li{
+	display:inline;
+}
+
+#bbm_fa #preview_fa_align{
+	cursor:pointer;
+}
+
+#bbm_fa #preview_fa_txt.left input{
+	text-align:right;
+}
+
+#bbm_fa #preview_fa_txt.right input{
+	text-align:left;
+}
+
+#bbm_fa .bbm_fa_colpick{
+	cursor:pointer;
+}
+
+.bbm_fa_color_raz{
+	color: white;
+	position:absolute;
+	bottom:4px;
+	left:9px;
+	text-align:center;
+	cursor:pointer;
+}
+
+#bbm_fa .fa-stack-1x {
+	font-size: 1em;//fix
+}]]></template>
   </templates>
   <public_template_modifications>
     <modification template="page_container_js_head" modification_key="sedo_fa_cdn_integration" description="Font awesome BbCode CDN integration" execution_order="10" enabled="1" action="preg_replace">
       <find><![CDATA[#^.*$#su]]></find>
       <replace><![CDATA[$0
-<xen:if is="{$xenOptions.fa_bbcode_cdn_integration}">
+<xen:if is="{$xenOptions.fa_bbcode_integration} == 1">
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<xen:elseif is="{$xenOptions.fa_bbcode_integration} == 2"/>
+	<link href="styles/sedo/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 </xen:if>]]></replace>
     </modification>
   </public_template_modifications>

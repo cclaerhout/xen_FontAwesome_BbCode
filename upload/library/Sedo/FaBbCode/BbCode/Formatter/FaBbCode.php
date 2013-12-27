@@ -10,8 +10,12 @@ class Sedo_FaBbCode_BbCode_Formatter_FaBbCode
 		$calledFonts = array();
 		$callOptions = array();
 		$stackEnabled = false;
-
-		$fontSize = '';
+		
+		$extraCssFirst = array();
+		$extraCssSecond = array();
+		
+		$fontSize = array();
+		$color = array();		
 		$textPosition = 'right';
 		
 		/* Browse Options */
@@ -26,7 +30,7 @@ class Sedo_FaBbCode_BbCode_Formatter_FaBbCode
 			}
 			elseif(Sedo_FaBbCode_Helper_FontAwesome::checkFontSize($option))
 			{
-				$fontSize = $option;
+				$fontSize[] = $option;
 			}
 			elseif(Sedo_FaBbCode_Helper_FontAwesome::checkFontOption($option, false))
 			{
@@ -64,6 +68,9 @@ class Sedo_FaBbCode_BbCode_Formatter_FaBbCode
 			{
 				$textPosition = 'right';
 			}
+			elseif(preg_match(self::$colorRegex, $option, $match)){
+				$color[] = $match[0];
+			}
 		}
 		
 		$cssUniqFont = false;
@@ -78,9 +85,25 @@ class Sedo_FaBbCode_BbCode_Formatter_FaBbCode
 				$callOptions['font_2'] = array();
 			}
 			
-			$callOptions['wrapper'][] = $fontSize;
+			$callOptions['wrapper'][] = (isset($fontSize[0])) ? $fontSize[0] : '';
 			$callOptions['font_1'][] = $calledFonts[0];
 			$callOptions['font_2'][] = $calledFonts[1];
+			
+			if(isset($fontSize[1]) && $fontSize[1] = 'fa-lg')
+			{
+				//Only allow fa-lg for the second option to avoid too big icons
+				$callOptions['font_2'][] = $fontSize[1];
+			}
+			
+			if(isset($color[0]))
+			{
+				$extraCssFirst[] = 'color: '.$color[0];
+			}
+			
+			if(isset($color[1]))
+			{
+				$extraCssSecond[] = 'color: '.$color[1];			
+			}
 			
 			foreach($callOptions as &$arrayParent)
 			{
@@ -93,11 +116,20 @@ class Sedo_FaBbCode_BbCode_Formatter_FaBbCode
 		}
 		elseif(!empty($calledFonts))
 		{
-			$callOptions += array($calledFonts[0], $fontSize);
-			
+			$fontSize = (isset($fontSize[0])) ? $fontSize[0] : '';
+
+			$callOptions = array_merge($callOptions, array($calledFonts[0], $fontSize));
 			$callOptions = array_unique($callOptions);
 			$cssUniqFont = implode(' ', $callOptions);
+
+			if(isset($color[0]))
+			{
+				$extraCssFirst[] = 'color: '.$color[0];
+			}			
 		}
+
+		$extraCssFirst = implode('; ', $extraCssFirst);
+		$extraCssSecond = implode('; ', $extraCssSecond);
 		
 		$options['uniqFont'] = $cssUniqFont;
 		$options['stack'] = array(
@@ -105,6 +137,8 @@ class Sedo_FaBbCode_BbCode_Formatter_FaBbCode
 			'font1' => $cssFont1,
 			'font2' => $cssFont2
 		);
+		$options['extraCssFirst'] = (empty($extraCssFirst)) ? '' : "style='$extraCssFirst'";
+		$options['extraCssSecond'] = (empty($extraCssSecond)) ? '' : "style='$extraCssSecond'";
 		$options['textPosition'] = $textPosition;
 		$options['badIE'] = self::_isBadIE(8);
 	}
@@ -219,6 +253,8 @@ class Sedo_FaBbCode_BbCode_Formatter_FaBbCode
 
 			return $visitor->getBrowser['isMobile'];
 		}
-	}	
+	}
+	
+	public static $colorRegex = '/^(rgb\(\s*\d+%?\s*,\s*\d+%?\s*,\s*\d+%?\s*\)|#[a-f0-9]{6}|#[a-f0-9]{3}|[a-z]+)$/i';
 }
 //Zend_Debug::dump($abc);
