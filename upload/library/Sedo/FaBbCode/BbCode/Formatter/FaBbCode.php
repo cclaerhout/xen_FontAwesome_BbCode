@@ -48,7 +48,7 @@ class Sedo_FaBbCode_BbCode_Formatter_FaBbCode
 
 				if(in_array($option, array('pull-right', 'pull-left')))
 				{
-					$callOptions[] = 'fa-border';
+					//$callOptions[] = 'fa-border';
 				}
 				elseif($option == 'fa-stack')
 				{
