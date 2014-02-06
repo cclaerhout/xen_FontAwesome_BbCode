@@ -13,6 +13,8 @@
 [fa=fa-2x|#08450e|fa-square|fa-stack-2x|fa-stack|#3abd2c|fa-user|fa-stack-1x|fa-lg][/fa]]]></example>
       <active>1</active>
       <display_help>0</display_help>
+      <bbcode_id>sedo_adv_fa</bbcode_id>
+      <bbcode_addon></bbcode_addon>
     </General>
     <Methods>
       <Replacement>
