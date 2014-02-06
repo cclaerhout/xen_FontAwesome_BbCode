@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<addon addon_id="fa_bbcode" title="Font Awesome BbCode" version_string="1.0.1" version_id="1" url="http://xenforo.com/community/resources/2691/" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="">
+<addon addon_id="fa_bbcode" title="Font Awesome BbCode" version_string="1.1.0" version_id="2" url="http://xenforo.com/community/resources/2691/" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="">
   <admin_navigation/>
   <admin_permissions/>
   <admin_style_properties/>
@@ -8,6 +8,7 @@
   <code_events/>
   <code_event_listeners>
     <listener event_id="load_class_controller" execute_order="15" callback_class="Sedo_FaBbCode_Listeners" callback_method="controllerPublic" active="1" hint="XenForo_ControllerPublic_Editor" description="Extend Editor Controller to add Awesome Fonts array to MCE4 dialog"/>
+    <listener event_id="tinyquattro_setup" execute_order="11" callback_class="Sedo_FaBbCode_Listeners" callback_method="mceConfig" active="1" hint="" description="Add Fa Mce Menu"/>
   </code_event_listeners>
   <cron/>
   <email_templates/>
@@ -32,8 +33,8 @@
     <phrase title="option_fa_bbcode_integration" version_id="0" version_string="1.0"><![CDATA[Font-Awesome Integration]]></phrase>
     <phrase title="option_fa_bbcode_integration_explain" version_id="0" version_string="1.0"><![CDATA[If you have already integrated the Font-Awesome CDN in your header, no need to integrate it again. If you choose the local integration, the Font-Awesome path will be then: "styles/sedo/font-awesome/css/font-awesome.min.css".<br/><br/>
 Default value: "Font-Awesome CDN integration".]]></phrase>
-    <phrase title="option_group_fa_bbcode" version_id="0" version_string="1.0"><![CDATA[[BBM] Font Awesome BbCode]]></phrase>
-    <phrase title="option_group_fa_bbcode_description" version_id="0" version_string="1.0"><![CDATA[Font Awesome BbCode Options]]></phrase>
+    <phrase title="option_group_fa_bbcode" version_id="0" version_string="1.0"><![CDATA[[BBM] Font Awesome Bb Code]]></phrase>
+    <phrase title="option_group_fa_bbcode_description" version_id="0" version_string="1.0"><![CDATA[Font Awesome Bb Code Options]]></phrase>
     <phrase title="sedo_fabbcode_fontawesome_creator" global_cache="1" version_id="0" version_string="1.0"><![CDATA[Font-Awesome Creator]]></phrase>
     <phrase title="sedo_fa_all" version_id="0" version_string="1.0"><![CDATA[All]]></phrase>
     <phrase title="sedo_fa_and_x_more" version_id="0" version_string="1.0"><![CDATA[and {0} more...]]></phrase>
@@ -122,7 +123,7 @@ Default value: "Font-Awesome CDN integration".]]></phrase>
 	};
 </script>
 
-<div class="mceTitle" data-width="500" data-height="300">{xen:phrase sedo_fabbcode_fontawesome_creator}</div>
+<div class="mceTitle FastReload" data-width="500" data-height="300">{xen:phrase sedo_fabbcode_fontawesome_creator}</div>
 
 <div id="bbm_fa">
 	<dl class="xenmce_inline">
@@ -317,4 +318,5 @@ Default value: "Font-Awesome CDN integration".]]></phrase>
     </modification>
   </public_template_modifications>
   <bb_code_media_sites/>
+  <bb_codes/>
 </addon>
