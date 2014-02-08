@@ -22,7 +22,7 @@ class Sedo_FaBbCode_BbCode_Formatter_FaBbCode
 		foreach($options as $option)
 		{
 			$original = $option;
-			$option = self::_cleanOption($option, true);
+			$option = BBM_Helper_BbCodes::cleanOption($option, true);
 			
 			if (Sedo_FaBbCode_Helper_FontAwesome::getFontCode($option))
 			{
@@ -68,7 +68,7 @@ class Sedo_FaBbCode_BbCode_Formatter_FaBbCode
 			{
 				$textPosition = 'right';
 			}
-			elseif(preg_match(self::$colorRegex, $option, $match)){
+			elseif(preg_match(BBM_Helper_BbCodes::$colorRegex, $option, $match)){
 				$color[] = $match[0];
 			}
 		}
@@ -76,7 +76,7 @@ class Sedo_FaBbCode_BbCode_Formatter_FaBbCode
 		$cssUniqFont = false;
 		$cssWrapper = false;
 		$cssFont1 = false;
-		$csssFont2 = false;
+		$cssFont2 = false;
 
 		if(count($calledFonts) >= 2 && isset($callOptions['wrapper']))
 		{
@@ -140,121 +140,7 @@ class Sedo_FaBbCode_BbCode_Formatter_FaBbCode
 		$options['extraCssFirst'] = (empty($extraCssFirst)) ? '' : "style='$extraCssFirst'";
 		$options['extraCssSecond'] = (empty($extraCssSecond)) ? '' : "style='$extraCssSecond'";
 		$options['textPosition'] = $textPosition;
-		$options['badIE'] = self::_isBadIE(8);
+		$options['badIE'] = BBM_Helper_BbCodes::isBadIE(8);
 	}
-
-	/*Mini Tools*/
-
-	protected static function _cleanOption($string, $strtolower = false)
-	{
-		if(XenForo_Application::get('options')->get('FaBbCode_ZenkakuConv'))
-		{
-			$string = mb_convert_kana($string, 'a', 'UTF-8');
-		}
-		
-		if($strtolower == true)
-		{
-			$string = strtolower($string);
-		}
-		
-		return $string;
-	}
-	
-	protected static function _isBadIE($isBelow = 9)
-	{
-		$goTo = $isBelow-1;
-
-		$visitor = XenForo_Visitor::getInstance();
-		if(isset($visitor->getBrowser['IEis']))
-		{
-			//Browser Detection (Mobile/MSIE) Addon
-			if($visitor->getBrowser['isIE'] && $visitor->getBrowser['IEis'] < $isBelow)
-			{
-				return true;
-			}
-		}
-		else
-		{
-			//Manual helper
-			if(Sedo_AdvBBcodeBar_Helper_Sedo::isBadIE('target', "6-$goTo"))
-			{
-				return true;
-			}
-		}
-		
-		return false;
-	}
-
-	public static $regexUrl = '#^(?:(?:https?|ftp|file)://|www\.|ftp\.)[-\p{L}0-9+&@\#/%=~_|$?!:,.]*[-\p{L}0-9+&@\#/%=~_|$]$#ui';
-
-	protected static function _rgb2hex($color)
-	{
-		//Match R, G, B values
-		preg_match('#^rgb\((?P<r>\d{1,3}).+?(?P<g>\d{1,3}).+?(?P<b>\d{1,3})\)$#i', $color, $rgb);
-		//Convert them in hexa
-		//Code source: http://forum.codecall.net/php-tutorials/22589-rgb-hex-colors-hex-colors-rgb-php.html				
-		$output = sprintf("%x", ($rgb['r'] << 16) + ($rgb['g'] << 8) + $rgb['b']);
-		
-	       	return $output;
-	}
-	
-	protected static $requestUri = null;
-	protected static $fullBasePath = null;
-	protected static $fullUri = null;	
-
-	protected static function _getRequestPath($mode = 'requestUri')
-	{
-		if(self::$requestUri === null)
-		{
-			$requestPath = XenForo_Application::get('requestPaths');
-			self::$requestUri = $requestPath['requestUri'];
-			self::$fullBasePath = $requestPath['fullBasePath'];
-			self::$fullUri = $requestPath['fullUri'];			
-		}
-		
-		switch ($mode) {
-			case 'requestUri':
-				return self::$requestUri;
-			break;
-			case 'fullBasePath':
-				return self::$fullBasePath;
-			break;
-			case 'fullUri':
-				return self::$fullUri;
-			break;		
-		}
-	}
-
-	public static function useResponsiveMode()
-	{
-		$isResponsive = XenForo_Template_Helper_Core::styleProperty('enableResponsive');
-		
-		if(!$isResponsive)
-		{
-			return false;
-		}
-		
-		return self::isMobile();
-	}
-	
-	public static function isMobile($option = false)
-	{
-		if((!class_exists('Sedo_DetectBrowser_Listener_Visitor') || !isset($visitor->getBrowser['isMobile'])))
-		{
-			return XenForo_Visitor::isBrowsingWith('mobile');
-		}
-		else
-		{
-			//External addon
-			if($option == 'onlyTablet')
-			{
-				return $visitor->getBrowser['isTablet'];
-			}
-
-			return $visitor->getBrowser['isMobile'];
-		}
-	}
-	
-	public static $colorRegex = '/^(rgb\(\s*\d+%?\s*,\s*\d+%?\s*,\s*\d+%?\s*\)|#[a-f0-9]{6}|#[a-f0-9]{3}|[a-z]+)$/i';
 }
 //Zend_Debug::dump($abc);
