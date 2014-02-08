@@ -14,7 +14,7 @@
       <active>1</active>
       <display_help>0</display_help>
       <bbcode_id>sedo_adv_fa</bbcode_id>
-      <bbcode_addon></bbcode_addon>
+      <bbcode_addon>fa_bbcode</bbcode_addon>
     </General>
     <Methods>
       <Replacement>
