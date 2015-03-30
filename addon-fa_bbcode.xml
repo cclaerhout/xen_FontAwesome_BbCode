@@ -18,14 +18,6 @@
   <email_template_modifications/>
   <optiongroups>
     <group group_id="fa_bbcode" display_order="13215" debug_only="0"/>
-    <option option_id="fa_bbcode_integration" edit_format="radio" data_type="integer" can_backup="1">
-      <default_value>1</default_value>
-      <edit_format_params>0={xen:phrase sedo_fa_no_integration}
-1={xen:phrase sedo_fa_cdn_integration}
-2={xen:phrase sedo_fa_local_integration}</edit_format_params>
-      <sub_options></sub_options>
-      <relation group_id="fa_bbcode" display_order="10"/>
-    </option>
     <option option_id="fa_bbcode_smilies_below_box_fa_integration" edit_format="select" data_type="boolean" can_backup="1">
       <default_value>0</default_value>
       <edit_format_params>0={xen:phrase no}
@@ -34,7 +26,7 @@
       <relation group_id="fa_bbcode" display_order="100"/>
     </option>
     <option option_id="sedo_fa_bbcode_wysiwyg_fa_url" edit_format="textbox" data_type="string" can_backup="1">
-      <default_value>http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0</default_value>
+      <default_value>https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0</default_value>
       <edit_format_params></edit_format_params>
       <sub_options></sub_options>
       <relation group_id="fa_bbcode" display_order="120"/>
@@ -46,18 +38,15 @@
     <interface_groups/>
   </permissions>
   <phrases>
-    <phrase title="option_fa_bbcode_integration" version_id="0" version_string="1.0"><![CDATA[Font-Awesome Integration]]></phrase>
-    <phrase title="option_fa_bbcode_integration_explain" version_id="0" version_string="1.0"><![CDATA[If you have already integrated the Font-Awesome CDN in your header, no need to integrate it again. If you choose the local integration, the Font-Awesome path will be then: "styles/sedo/font-awesome/css/font-awesome.min.css".<br/><br/>
-Default value: "Font-Awesome CDN integration".]]></phrase>
     <phrase title="option_fa_bbcode_smilies_below_box_fa_integration" version_id="3" version_string="1.1.1"><![CDATA[Font-Awesome Integration with the Smilies below box ?]]></phrase>
     <phrase title="option_fa_bbcode_smilies_below_box_fa_integration_explain" version_id="3" version_string="1.1.1"><![CDATA[This option will integrate the Font-Awesomes icons inside the Smilies below box]]></phrase>
     <phrase title="option_group_fa_bbcode" version_id="0" version_string="1.0"><![CDATA[[BBM] Font Awesome Bb Code]]></phrase>
     <phrase title="option_group_fa_bbcode_description" version_id="0" version_string="1.0"><![CDATA[Font Awesome Bb Code Options]]></phrase>
     <phrase title="option_sedo_fa_bbcode_wysiwyg_fa_url" version_id="3" version_string="1.1.1"><![CDATA[Wysiwyg Mode - Font Awesome Root Url]]></phrase>
-    <phrase title="option_sedo_fa_bbcode_wysiwyg_fa_url_explain" version_id="3" version_string="1.1.1"><![CDATA[If the inserted Font-Awesome element has no custom formating option, it will be displayed inside the editor with a Wysiwyg mode. To perform this, the Font Awesome stylesheet must be loaded in the editor Iframe. This stylesheet originally has relative urls in it. They will not work inside the iframe: the absolute path is needed.<br />
+    <phrase title="option_sedo_fa_bbcode_wysiwyg_fa_url_explain" version_id="4" version_string="1.2.0"><![CDATA[If the inserted Font-Awesome element has no custom formating option, it will be displayed inside the editor with a Wysiwyg mode. To perform this, the Font Awesome stylesheet must be loaded in the editor Iframe. This stylesheet originally has relative urls in it. They will not work inside the iframe: the absolute path is needed.<br />
 <br />
 You can configure here the url of FA (root directory). The default is: <br />
-<b>http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0</b> <br />
+<b>https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0</b> <br />
  <br />
 Do not add the last '/'.]]></phrase>
     <phrase title="sedo_bbcode_fa_fa" version_id="3" version_string="1.1.1"><![CDATA[Font Awesome]]></phrase>
@@ -101,7 +90,7 @@ Do not add the last '/'.]]></phrase>
   <route_prefixes/>
   <style_properties/>
   <templates>
-    <template title="bbm_fontawesome" version_id="0" version_string="1.0"><![CDATA[<xen:require css="bbm_fontawesome.css" />
+    <template title="bbm_fontawesome" version_id="4" version_string="1.2.0"><![CDATA[<xen:require css="bbm_fontawesome.css" />
 
 <xen:if is="{$options.uniqFont}">
 	<xen:if is="{$options.textPosition} == 'left'">
@@ -331,7 +320,11 @@ Do not add the last '/'.]]></phrase>
 #bbm_fa .fa-stack-1x {
 	font-size: 1em;//fix
 }]]></template>
-    <template title="sedo_editor_contents_fa.css" version_id="3" version_string="1.1.1"><![CDATA[<xen:set var="$faSource">{$xenOptions.sedo_fa_bbcode_wysiwyg_fa_url}</xen:set>
+    <template title="sedo_editor_contents_fa.css" version_id="4" version_string="1.2.0"><![CDATA[<xen:if is="{xen:helper sedo_is_https, $xenOptions.boardUrl}">
+	<xen:set var="$faSource">{xen:helper sedo_is_https, $xenOptions.sedo_fa_bbcode_wysiwyg_fa_url, '{xen:array 'toSSL=1'}'}</xen:set>
+<xen:else />
+	<xen:set var="$faSource">{$xenOptions.sedo_fa_bbcode_wysiwyg_fa_url}</xen:set>
+</xen:if>
 
 /*!
  *  Font Awesome 4.3.0 by @davegandy - http://fontawesome.io - @fontawesome
