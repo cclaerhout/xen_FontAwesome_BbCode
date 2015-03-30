@@ -11,7 +11,7 @@
     <listener event_id="load_class_bb_code" execute_order="10" callback_class="Sedo_FaBbCode_Listeners" callback_method="extendBbCodeWysiwygFormatter" active="1" hint="XenForo_BbCode_Formatter_Wysiwyg" description="Extends XenForo_BbCode_Formatter_Wysiwyg"/>
     <listener event_id="load_class_controller" execute_order="15" callback_class="Sedo_FaBbCode_Listeners" callback_method="controllerPublic" active="1" hint="XenForo_ControllerPublic_Editor" description="Extend Editor Controller to add Awesome Fonts array to MCE4 dialog"/>
     <listener event_id="load_class_view" execute_order="10" callback_class="Sedo_FaBbCode_Listeners" callback_method="extendViewPublicEditorSmilies" active="1" hint="XenForo_ViewPublic_Editor_Smilies" description="Extends XenForo_ViewPublic_Editor_Smilies"/>
-    <listener event_id="tinyquattro_setup" execute_order="10" callback_class="Sedo_FaBbCode_Listeners" callback_method="extendMceConfig" active="1" hint="" description="Extends Mce Config"/>
+    <listener event_id="tinyquattro_setup" execute_order="100" callback_class="Sedo_FaBbCode_Listeners" callback_method="extendMceConfig" active="1" hint="" description="Extends Mce Config"/>
   </code_event_listeners>
   <cron/>
   <email_templates/>
