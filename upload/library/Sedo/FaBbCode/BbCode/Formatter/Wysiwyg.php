@@ -34,7 +34,7 @@ class Sedo_FaBbCode_BbCode_Formatter_Wysiwyg extends XFCP_Sedo_FaBbCode_BbCode_F
 		}
 		else
 		{
-			return '<i name="fa" class="fa '.$tagOptions[0].'">&#8888;</i>&#8291;';
+			return '<i name="fa" class="fa '.$tagOptions[0].'">&#8888;</i>&nbsp;';
 		}
 	}
 }
