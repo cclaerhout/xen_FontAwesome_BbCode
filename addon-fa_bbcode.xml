@@ -384,15 +384,6 @@ Do not add the last '/'.]]></phrase>
       <replace><![CDATA[$0
 <xen:include template="sedo_editor_contents_fa.css" />]]></replace>
     </modification>
-    <modification template="page_container_js_head" modification_key="sedo_fa_cdn_integration" description="Font awesome BbCode CDN integration" execution_order="10" enabled="1" action="preg_replace">
-      <find><![CDATA[#^.*$#su]]></find>
-      <replace><![CDATA[$0
-<xen:if is="{$xenOptions.fa_bbcode_integration} == 1">
-	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-<xen:elseif is="{$xenOptions.fa_bbcode_integration} == 2"/>
-	<link href="styles/sedo/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-</xen:if>]]></replace>
-    </modification>
   </public_template_modifications>
   <bb_code_media_sites/>
   <bb_codes/>
